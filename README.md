@@ -31,7 +31,7 @@ Navigate to http://localhost:8000/import
 
 ### Enjoy !
 
-[Imgur](http://i.imgur.com/VECZ25P.png)
+![Imgur](http://i.imgur.com/VECZ25P.png)
 
 
 ---
