@@ -1,5 +1,7 @@
 # NeoClient MovieDB Example
 
+![Imgur](http://i.imgur.com/VECZ25P.png)
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy) | 1 dyno + 1 GrapheneDB chalk addon (all-free)
 
 [Live App Here](http://neo4j-neoclient-example.herokuapp.com/)
@@ -30,8 +32,6 @@ php -S localhost:8000
 Navigate to http://localhost:8000/import
 
 ### Enjoy !
-
-![Imgur](http://i.imgur.com/VECZ25P.png)
 
 
 ---
