@@ -9,8 +9,22 @@ require __DIR__.'/vendor/autoload.php';
 
 $app = new Application();
 
+$settings = [
+    'scheme' => 'http',
+    'host' => 'localhost',
+    'port' => 7474,
+    'auth' => false,
+    'user' => null,
+    'pass' => null
+];
+
+if (getenv('GRAPHENEDB_URL') !== false){
+    $settings = array_merge($settings, parse_url(getenv('GRAPHENEDB_URL')));
+    $settings['auth'] = true;
+}
+
 $neo4j = new Client();
-$neo4j->addConnection('default', 'http', 'localhost', 7474)
+$neo4j->addConnection('default', $settings['scheme'], $settings['host'], $settings['port'], $settings['auth'], $settings['user'], $settings['pass'])
     ->build();
 
 $app->get('/', function () {
