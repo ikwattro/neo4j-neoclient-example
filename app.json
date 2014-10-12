@@ -1,5 +1,5 @@
 {
-    "name": "Neo4j NeoClient MovieDB Example",
+    "name": "Neo4j NeoClient Movie Example",
     "description": "Showing how PHP loves Neo4j with the NeoClient library",
     "keywords": [
         "graph",
