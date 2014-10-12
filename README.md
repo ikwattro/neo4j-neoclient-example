@@ -4,7 +4,7 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy) | 1 dyno + 1 GrapheneDB chalk addon (all-free)
 
-[Live App Here](http://neo4j-neoclient-example.herokuapp.com/)
+[Live App Here](http://guarded-reef-9268.herokuapp.com/)
 
 Simple Silex App using [NeoClient](https://github.com/neoxygen/neo4j-neoclient).
 
