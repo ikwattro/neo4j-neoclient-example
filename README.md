@@ -6,7 +6,7 @@
 
 [Live App Here](http://guarded-reef-9268.herokuapp.com/) *Please note that it can make time to load if the instance has been stopped by heroku*
 
-Simple Silex App using [NeoClient](https://github.com/neoxygen/neo4j-neoclient).
+# Simple Silex App using [NeoClient](https://github.com/neoxygen/neo4j-neoclient).
 
 ## Usage 
 
