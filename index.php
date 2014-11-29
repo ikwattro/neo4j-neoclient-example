@@ -1,9 +1,8 @@
 <?php
-use Silex\Application,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\JsonResponse,
-    Neoxygen\NeoClient\ClientBuilder,
-    Neoxygen\NeoClient\Formatter\ResponseFormatter;
+use Silex\Application;
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\JsonResponse;
+use Neoxygen\NeoClient\ClientBuilder;
 
 require __DIR__.'/vendor/autoload.php';
 
@@ -36,13 +35,12 @@ $app->get('/graph', function (Request $request) use ($neo4j) {
     $limit = $request->get('limit', 50);
     $params = ['limit' => $limit];
     $q = 'MATCH (m:Movie)<-[r:ACTED_IN]-(p:Person) RETURN m,r,p LIMIT {limit}';
-    $apiResponse = $neo4j->sendCypherQuery($q, $params);
+    $result = $neo4j->sendCypherQuery($q, $params)->getResult();
 
     $nodes = [];
     $edges = [];
     $nodesPositions = [];
 
-    $result = $formatter->format($apiResponse);
     $i = 0;
     foreach ($result->getNodes() as $node){
         $prop = ($node->getLabel() === 'Movie') ? 'title' : 'name';
@@ -78,9 +76,7 @@ $app->get('/search', function (Request $request) use ($neo4j) {
     $query = 'MATCH (m:Movie) WHERE m.title =~ {term} RETURN m';
     $params = ['term' => $term];
 
-    $apiResponse = $neo4j->sendCypherQuery($query, $params, null, array('graph'));
-    $formatter = new ResponseFormatter();
-    $result = $formatter->format($apiResponse);
+    $result = $neo4j->sendCypherQuery($query, $params)->getResult();
     $movies = [];
     foreach ($result->getNodes() as $movie){
         $movies[] = ['movie' => $movie->getProperties()];
@@ -96,9 +92,7 @@ $app->get('/movie/{title}', function ($title) use ($neo4j) {
     $q = 'MATCH (m:Movie) WHERE m.title = {title} OPTIONAL MATCH p=(m)<-[r]-(a:Person) RETURN m,p';
     $params = ['title' => $title];
 
-    $apiResponse = $neo4j->sendCypherQuery($q, $params, null, array('graph'));
-    $formatter = new ResponseFormatter();
-    $result = $formatter->format($apiResponse);
+    $result = $neo4j->sendCypherQuery($q, $params)->getResult();
 
     $movie = $result->getSingleNodeByLabel('Movie');
     $mov = [
