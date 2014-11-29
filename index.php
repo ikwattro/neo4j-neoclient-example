@@ -23,7 +23,7 @@ if (getenv('GRAPHENEDB_URL') !== false){
     $settings['auth'] = true;
 }
 
-$neo4j = new ClientBuilder::create()
+$neo4j = ClientBuilder::create()
     ->addConnection('default', $settings['scheme'], $settings['host'], $settings['port'], $settings['auth'], $settings['user'], $settings['pass'])
     ->setAutoFormatResponse(true)
     ->build();
