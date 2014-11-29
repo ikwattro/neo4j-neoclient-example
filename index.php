@@ -2,7 +2,7 @@
 use Silex\Application,
     Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\JsonResponse,
-    Neoxygen\NeoClient\Client,
+    Neoxygen\NeoClient\ClientBuilder,
     Neoxygen\NeoClient\Formatter\ResponseFormatter;
 
 require __DIR__.'/vendor/autoload.php';
@@ -23,8 +23,9 @@ if (getenv('GRAPHENEDB_URL') !== false){
     $settings['auth'] = true;
 }
 
-$neo4j = new Client();
-$neo4j->addConnection('default', $settings['scheme'], $settings['host'], $settings['port'], $settings['auth'], $settings['user'], $settings['pass'])
+$neo4j = new ClientBuilder::create()
+    ->addConnection('default', $settings['scheme'], $settings['host'], $settings['port'], $settings['auth'], $settings['user'], $settings['pass'])
+    ->setAutoFormatResponse(true)
     ->build();
 
 $app->get('/', function () {
@@ -32,11 +33,10 @@ $app->get('/', function () {
 });
 
 $app->get('/graph', function (Request $request) use ($neo4j) {
-    $formatter = new ResponseFormatter();
     $limit = $request->get('limit', 50);
     $params = ['limit' => $limit];
     $q = 'MATCH (m:Movie)<-[r:ACTED_IN]-(p:Person) RETURN m,r,p LIMIT {limit}';
-    $apiResponse = $neo4j->sendCypherQuery($q, $params, null, array('row', 'graph'));
+    $apiResponse = $neo4j->sendCypherQuery($q, $params);
 
     $nodes = [];
     $edges = [];
