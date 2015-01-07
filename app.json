@@ -11,5 +11,5 @@
     "website": "http://www.neoxygen.io",
     "repository": "https://github.com/ikwattro/neo4j-neoclient-example",
     "success_url": "/import",
-    "addons": ["graphenedb:chalk"]
+    "addons": ["graphstoryco"]
 }

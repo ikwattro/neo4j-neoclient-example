@@ -17,7 +17,7 @@ $settings = [
     'pass' => null
 ];
 
-if (getenv('GRAPHENEDB_URL') !== false){
+if (getenv('GRAPHSTORY_URL') !== false){
     $settings = array_merge($settings, parse_url(getenv('GRAPHENEDB_URL')));
     $settings['auth'] = true;
 }
