@@ -25,6 +25,7 @@ if (getenv('GRAPHSTORY_URL') !== false){
 $neo4j = ClientBuilder::create()
     ->addConnection('default', $settings['scheme'], $settings['host'], $settings['port'], $settings['auth'], $settings['user'], $settings['pass'])
     ->setAutoFormatResponse(true)
+    ->setDefaultTimeout(25)
     ->build();
 
 $app->get('/', function () {
