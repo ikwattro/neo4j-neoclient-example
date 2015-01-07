@@ -2,7 +2,7 @@
 
 ![Imgur](http://i.imgur.com/VECZ25P.png)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy) | 1 dyno + 1 GrapheneDB chalk addon (all-free)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy) | 1 dyno + 1 Graphstory addon (all-free)
 
 [Live App Here](http://guarded-reef-9268.herokuapp.com/) *Please note that it can make time to load if the instance has been stopped by heroku*
 
